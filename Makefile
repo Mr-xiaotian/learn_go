@@ -1,15 +1,15 @@
 OUT := bin
+TARGETS := hello value for if_else switch
 
-.PHONY: hello value clean
+.PHONY: all $(TARGETS)
 
-hello: $(OUT)/hello.exe
-	./$(OUT)/hello.exe
-	
-$(OUT)/hello.exe: hello/main.go
-	go build -o $(OUT)/hello.exe hello/main.go
+# 默认目标：构建所有
+all: $(TARGETS)
 
-value: $(OUT)/value.exe
-	./$(OUT)/value.exe
-	
-$(OUT)/value.exe: value/main.go
-	go build -o $(OUT)/value.exe value/main.go
+# 每个目标构建规则
+$(TARGETS): %: $(OUT)/%.exe
+	./$<
+
+# 编译规则
+$(OUT)/%.exe: %/main.go
+	go build -o $@ $<
