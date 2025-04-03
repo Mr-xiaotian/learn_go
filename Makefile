@@ -1,5 +1,5 @@
 OUT := bin
-TARGETS := hello value for if_else switch
+TARGETS := hello value variable constants for if_else switch
 
 .PHONY: all $(TARGETS)
 
