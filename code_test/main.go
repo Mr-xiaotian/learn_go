@@ -130,6 +130,48 @@ func safeAssign(ptr_target *int, ptr_value *int) {
 	*ptr_target = *ptr_value
 }
 
+func swapDoublePointer(ptr_ptr_a, ptr_ptr_b **int) {
+	ori_a := **ptr_ptr_a
+	**ptr_ptr_a = **ptr_ptr_b
+	**ptr_ptr_b = ori_a
+}
+
+func appendToSlice(s *[]int, val int) {
+	*s = append(*s, val)
+}
+
+func createPtr() *int {
+	x := 100
+	return &x
+}
+
+type Address struct {
+	City string
+}
+type User struct {
+	Name string
+	Addr *Address
+}
+
+func cloneUser(u *User, new_city string) *User {
+	user := *u
+	user_copy := User{}
+	Addr_copy := Address{City: new_city}
+
+	user_copy.Name = user.Name
+	user_copy.Addr = &Addr_copy
+
+	return &user_copy
+}
+
+func MakeIncrementor(start int) func() *int {
+	return func() *int {
+		start += 1
+		new_start := start
+		return &new_start
+	}
+}
+
 func main() {
 	fmt.Println("返回从 1 到 n 中所有偶数的和:")
 	fmt.Println(sumEven(6))
@@ -177,8 +219,36 @@ func main() {
 	var d *int = nil
 	safeAssign(&c, d)
 	fmt.Println(c)
-
 	e := 10
 	safeAssign(&c, &e)
 	fmt.Println(c)
+
+	fmt.Println("双指针交换值")
+	var x_1, y_1 int = 3, 7
+	pa, pb := &x_1, &y_1
+	swapDoublePointer(&pa, &pb)
+	fmt.Println(*pa, *pb)
+
+	fmt.Println("在函数中创建切片并返回，保持外部可见:")
+	f := []int{1, 2}
+	appendToSlice(&f, 99)
+	fmt.Println(f)
+
+	fmt.Println("指针逃逸判断:")
+	x_ptr := createPtr()
+	fmt.Println(*x_ptr)
+
+	fmt.Println("结构体指针深层操作:")
+	add := Address{"SuZhou"}
+	user := User{"V", &add}
+	copy_user := cloneUser(&user, "Tokyo")
+	fmt.Println(*copy_user)
+	fmt.Println(*copy_user.Addr)
+
+	fmt.Println("函数指针工厂（高阶函数）:")
+	inc := MakeIncrementor(5)
+	fmt.Println(*inc()) // 6
+	fmt.Println(*inc()) // 7
+	fmt.Println(*inc()) // 8
+
 }
