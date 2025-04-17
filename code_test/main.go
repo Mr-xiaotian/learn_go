@@ -1,254 +1,101 @@
+// 📌 main.go
 package main
 
-import (
-	"fmt"
-	"math"
-)
-
-func sumEven(num int) int {
-	sum_even_num := 0
-	for index := range num + 1 {
-		if index%2 != 0 {
-			continue
-		}
-		sum_even_num += index
-	}
-	return sum_even_num
-}
-
-func reverseArray(arr []int) []int {
-	var reverse_array []int
-	arr_max_index := len(arr) - 1
-
-	for index := range arr {
-		reverse_array = append(reverse_array, arr[arr_max_index-index])
-	}
-	return reverse_array
-}
-
-func countOdd(nums []int) int {
-	count_odd_num := 0
-	for _, num := range nums {
-		if num%2 == 0 {
-			continue
-		}
-		count_odd_num += 1
-	}
-	return count_odd_num
-}
-
-func reverseString(str string) string {
-	rune_str := []rune(str)
-	reverse_string_rune := []rune{}
-	max_str_index := len(rune_str) - 1
-
-	for index := range rune_str {
-		reverse_string_rune = append(reverse_string_rune, rune_str[max_str_index-index])
-	}
-	return string(reverse_string_rune)
-}
-
-func isPalindrome(s string) bool {
-	return reverseString(s) == s
-}
-
-func printTable(n int) {
-	for index_0 := range n {
-		x := index_0 + 1
-		for index_1 := range x {
-			y := index_1 + 1
-			fmt.Printf("%dx%d=%d ", y, x, y*x)
-		}
-		fmt.Println()
-	}
-}
-
-func findMaxKey(m map[string]int) string {
-	var max_key string
-	max_value := math.MinInt
-
-	for key, value := range m {
-		if value <= max_value {
-			continue
-		}
-		max_value = value
-		max_key = key
-	}
-	return max_key
-}
-
-func swapMinMax(arr []int) []int {
-	max_num := math.MinInt
-	min_num := math.MaxInt
-	var max_index, min_index int
-
-	for index, num := range arr {
-		if num > max_num {
-			max_num = num
-			max_index = index
-		}
-		if num < min_num {
-			min_num = num
-			min_index = index
-		}
-	}
-
-	new_arr := make([]int, len(arr))
-	copy(new_arr, arr)
-	new_arr[max_index] = int(min_num)
-	new_arr[min_index] = int(max_num)
-
-	return new_arr
-}
-
-func swap(ptr_a, ptr_b *int) {
-	ori_a := *ptr_a
-
-	*ptr_a = *ptr_b
-	*ptr_b = ori_a
-}
-
-func initValue(ptr *int) {
-	*ptr = 100
-}
-
-func squareAll(ptr_nums *[]int) {
-	nums := *ptr_nums
-	for index, num := range nums {
-		nums[index] = num * num
-	}
-}
-
-func getLength(ptr_s *string) int {
-	return len(*ptr_s)
-}
-
-func safeAssign(ptr_target *int, ptr_value *int) {
-	if ptr_value == nil {
-		return
-	}
-	*ptr_target = *ptr_value
-}
-
-func swapDoublePointer(ptr_ptr_a, ptr_ptr_b **int) {
-	ori_a := **ptr_ptr_a
-	**ptr_ptr_a = **ptr_ptr_b
-	**ptr_ptr_b = ori_a
-}
-
-func appendToSlice(s *[]int, val int) {
-	*s = append(*s, val)
-}
-
-func createPtr() *int {
-	x := 100
-	return &x
-}
-
-type Address struct {
-	City string
-}
-type User struct {
-	Name string
-	Addr *Address
-}
-
-func cloneUser(u *User, new_city string) *User {
-	user := *u
-	user_copy := User{}
-	Addr_copy := Address{City: new_city}
-
-	user_copy.Name = user.Name
-	user_copy.Addr = &Addr_copy
-
-	return &user_copy
-}
-
-func MakeIncrementor(start int) func() *int {
-	return func() *int {
-		start += 1
-		new_start := start
-		return &new_start
-	}
-}
+import "fmt"
 
 func main() {
-	fmt.Println("返回从 1 到 n 中所有偶数的和:")
-	fmt.Println(sumEven(6))
+	fmt.Println("🧪 Go Test Hub - Select the tests you want to run")
 
-	fmt.Println("接收一个整数切片并返回其反转结果:")
-	fmt.Println(reverseArray([]int{1, 2, 3, 4}))
+	// Uncomment the tests you want to execute:
+	testMath()
+	testSlice()
+	testString()
+	testMap()
+	testPointer()
+	testStruct()
+	testFactory()
+}
 
-	fmt.Println("统计切片中的奇数个数:")
-	fmt.Println(countOdd([]int{1, 2, 3, 4, 5}))
-
-	fmt.Println("检查一个字符串是否为回文:")
-	fmt.Println(isPalindrome("level:"))
-
-	fmt.Println("构造乘法表:")
+// ---------------------
+// 🔢 Math Tests
+func testMath() {
+	fmt.Println("\n🔢 Math Tests:")
+	fmt.Println("sumEven(6) =", sumEven(6))
+	fmt.Println("countOdd([1,2,3,4,5]) =", countOdd([]int{1, 2, 3, 4, 5}))
 	printTable(3)
+}
 
-	fmt.Println("找出 map 中值最大的键:")
-	fmt.Println(findMaxKey(map[string]int{"a": 1, "b": 10, "c": 5}))
+// 🔁 Slice Tests
+func testSlice() {
+	fmt.Println("\n🔁 Slice Tests:")
+	fmt.Println("reverseArray([1,2,3,4]) =", reverseArray([]int{1, 2, 3, 4}))
+	fmt.Println("swapMinMax([2,9,3,1,6]) =", swapMinMax([]int{2, 9, 3, 1, 6}))
+	arr := []int{1, 2, 3}
+	squareAll(&arr)
+	fmt.Println("squared arr =", arr)
+	s := []int{1, 2}
+	appendToSlice(&s, 99)
+	fmt.Println("appended slice =", s)
+}
 
-	fmt.Println("实现一个函数，交换切片中最小值与最大值的位置:")
-	fmt.Println(swapMinMax([]int{2, 9, 3, 1, 6}))
+// 🔤 String Tests
+func testString() {
+	fmt.Println("\n🔤 String Tests:")
+	fmt.Println("reverseString('hello') =", reverseString("hello"))
+	fmt.Println("isPalindrome('level') =", isPalindrome("level"))
+	str := "hello"
+	fmt.Println("getLength('hello') =", getLength(&str))
+}
 
-	fmt.Println("交换两个整数:")
+// 🗺️ Map Tests
+func testMap() {
+	fmt.Println("\n🗺️ Map Tests:")
+	m := map[string]int{"a": 1, "b": 10, "c": 5}
+	fmt.Println("findMaxKey(m) =", findMaxKey(m))
+}
+
+// 🧷 Pointer Tests
+func testPointer() {
+	fmt.Println("\n🧷 Pointer Tests:")
 	a, b := 3, 5
 	swap(&a, &b)
-	fmt.Println(a, b)
+	fmt.Println("swapped a, b =", a, b)
 
-	fmt.Println("为变量赋初值（用指针）:")
 	var x int
 	initValue(&x)
-	fmt.Println(x)
+	fmt.Println("initValue =", x)
 
-	fmt.Println("平方每个切片元素:")
-	arr_a := []int{1, 2, 3}
-	squareAll(&arr_a)
-	fmt.Println(arr_a)
-
-	fmt.Println("统计字符串长度:")
-	str := "hello"
-	length := getLength(&str)
-	fmt.Println(length)
-
-	fmt.Println("实现一个“安全赋值”函数:")
 	var c int = 0
 	var d *int = nil
 	safeAssign(&c, d)
-	fmt.Println(c)
 	e := 10
 	safeAssign(&c, &e)
-	fmt.Println(c)
+	fmt.Println("safe assigned c =", c)
 
-	fmt.Println("双指针交换值")
-	var x_1, y_1 int = 3, 7
-	pa, pb := &x_1, &y_1
+	x1, y1 := 3, 7
+	pa, pb := &x1, &y1
 	swapDoublePointer(&pa, &pb)
-	fmt.Println(*pa, *pb)
+	fmt.Println("double swap =", *pa, *pb)
 
-	fmt.Println("在函数中创建切片并返回，保持外部可见:")
-	f := []int{1, 2}
-	appendToSlice(&f, 99)
-	fmt.Println(f)
-
-	fmt.Println("指针逃逸判断:")
 	x_ptr := createPtr()
-	fmt.Println(*x_ptr)
+	fmt.Println("createPtr result =", *x_ptr)
+}
 
-	fmt.Println("结构体指针深层操作:")
+// 👥 Struct Tests
+func testStruct() {
+	fmt.Println("\n👥 Struct Tests:")
 	add := Address{"SuZhou"}
 	user := User{"V", &add}
 	copy_user := cloneUser(&user, "Tokyo")
-	fmt.Println(*copy_user)
-	fmt.Println(*copy_user.Addr)
+	fmt.Println("copied user =", *copy_user)
+	fmt.Println("copied address =", *copy_user.Addr)
+}
 
-	fmt.Println("函数指针工厂（高阶函数）:")
+// 🎛️ Function Factory Test
+func testFactory() {
+	fmt.Println("\n🎛️ Function Factory Test:")
 	inc := MakeIncrementor(5)
-	fmt.Println(*inc()) // 6
-	fmt.Println(*inc()) // 7
-	fmt.Println(*inc()) // 8
-
+	fmt.Println(*inc())
+	fmt.Println(*inc())
+	fmt.Println(*inc())
 }
