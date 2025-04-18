@@ -11,5 +11,5 @@ $(TARGETS): %: $(OUT)/%.exe
 	./$<
 
 # 编译规则
-$(OUT)/%.exe: %/main.go
-	go build -o $@ $<
+$(OUT)/%.exe: %/main.go $(wildcard %/*.go)
+	go build -o $@ ./$*

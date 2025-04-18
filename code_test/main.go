@@ -7,13 +7,13 @@ func main() {
 	fmt.Println("🧪 Go Test Hub - Select the tests you want to run")
 
 	// Uncomment the tests you want to execute:
-	testMath()
-	testSlice()
-	testString()
-	testMap()
-	testPointer()
+	// testMath()
+	// testSlice()
+	// testString()
+	// testMap()
+	// testPointer()
 	testStruct()
-	testFactory()
+	// testFactory()
 }
 
 // ---------------------
@@ -89,6 +89,20 @@ func testStruct() {
 	copy_user := cloneUser(&user, "Tokyo")
 	fmt.Println("copied user =", *copy_user)
 	fmt.Println("copied address =", *copy_user.Addr)
+	circle := Circle{4}
+	fmt.Println("Circle Area =", circle.Area())
+	person := Person{"Lion", 18}
+	person.HaveBirthday()
+	fmt.Println("person age =", person.Age)
+	student_0 := Student{"Alice", 15}
+	student_1 := Student{"Bob", 21}
+	student_2 := Student{"Carl", 12}
+	fmt.Println("average age =", AverageAge([]Student{student_0, student_1, student_2}))
+	author := Author{"小明"}
+	book := Book{"Go语言之旅", author}
+	fmt.Println("book info =", book.GetInfo())
+	rectangle := Rectangle{20, 19}
+	fmt.Println("new rectangle = ", rectangle.Scale(1.5))
 }
 
 // 🎛️ Function Factory Test
