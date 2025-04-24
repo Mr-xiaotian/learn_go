@@ -8,3 +8,4 @@
 | `pointer_utils.go`| 指针操作：交换、赋值、逃逸判断 |
 | `struct_utils.go`| 结构体指针操作与克隆           |
 | `func_factory.go`| 高阶函数：函数返回函数         |
+| `interface_demo.go`| 接口示例：定义、实现、动态分发、类型断言等 |
