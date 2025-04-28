@@ -12,8 +12,9 @@ func main() {
 	// testString()
 	// testMap()
 	// testPointer()
-	testStruct()
+	// testStruct()
 	// testFactory()
+	testInterface()
 }
 
 // ---------------------
@@ -112,4 +113,18 @@ func testFactory() {
 	fmt.Println(*inc())
 	fmt.Println(*inc())
 	fmt.Println(*inc())
+}
+
+func testInterface() {
+	fmt.Println("\nInterface Test:")
+	cicle := NewCircle{5}
+	rectangel := NewRectangle{2, 8}
+	shapeslice := []Shape{cicle, rectangel}
+	for _, s := range shapeslice {
+		PrintArea(s)
+		checkType(s)
+	}
+
+	consolewriter := ConsoleWriter{}
+	consolewriter.Write("It's console write")
 }

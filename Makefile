@@ -1,5 +1,5 @@
 OUT := bin
-TARGETS := hello value variable constants for if_else switch code_test
+TARGETS := hello value variable constants for if_else switch code_test progress
 
 .PHONY: all $(TARGETS)
 
