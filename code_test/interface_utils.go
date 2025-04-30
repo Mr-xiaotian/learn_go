@@ -38,7 +38,7 @@ func (r NewRectangle) Area() float64 {
 // 它接受任意 Shape 类型，输出其面积。用 Circle 和 Rectangle 测试它。
 
 func PrintArea(s Shape) {
-	fmt.Print(s.Area(), "   ")
+	fmt.Print(s.Area(), " ")
 }
 
 // 🔹题目 3：实现一个接口类型的切片
@@ -53,9 +53,9 @@ func PrintArea(s Shape) {
 func checkType(s Shape) {
 	switch s.(type) {
 	case NewCircle:
-		fmt.Println("It's a circle")
+		fmt.Println("Wow! It's a circle!")
 	case NewRectangle:
-		fmt.Println("It's a rectangle")
+		fmt.Println("Hoo! It's a rectangle!")
 	}
 }
 
