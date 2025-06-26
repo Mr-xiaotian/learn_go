@@ -107,9 +107,13 @@ func testStruct() {
 }
 
 // 🎛️ Function Factory Test
+// 测试函数工厂
 func testFactory() {
+	// 打印函数工厂测试
 	fmt.Println("\n🎛️ Function Factory Test:")
+	// 创建一个递增函数，初始值为5
 	inc := MakeIncrementor(5)
+	// 打印递增函数的值
 	fmt.Println(*inc())
 	fmt.Println(*inc())
 	fmt.Println(*inc())
