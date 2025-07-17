@@ -12,7 +12,7 @@ func divide(a, b int) (int, error) {
 	return a / b, nil
 }
 
-func divid_with_errorf(a, b int) (int, error) {
+func divid_with_error(a, b int) (int, error) {
 	quotient, err := divide(a, b)
 	if err != nil {
 		return 0, fmt.Errorf("divide failed: %w", err)
@@ -54,7 +54,7 @@ func chapter_8() {
 	fmt.Println(divide(3, 0))
 
 	// 使用 fmt.Errorf 包装错误
-	_, err := divid_with_errorf(9, 0)
+	_, err := divid_with_error(9, 0)
 	if err != nil {
 		fmt.Println(err)
 		if wrappedErr := errors.Unwrap(err); wrappedErr != nil {
